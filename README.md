@@ -117,25 +117,25 @@ The Kokoro model provides:
 - Fast local processing
 - No cloud dependencies
 
-## �� Project Structure
+## 📁 Project Structure
 
 ```
 audio-studio-ai/
 │
-├── README.md               # Project documentation
-├── app.py                  # Main Streamlit application
-├── config.py               # Configuration settings
-├── utils.py                # Utility functions
-├── requirements.txt        # Project dependencies
+├── 📝 README.md               # Project documentation and guide
+├── 🎯 app.py                  # Main Streamlit application interface
+├── ⚙️ config.py               # Configuration and settings management
+├── 🛠️ utils.py                # Utility functions and helpers
+├── 📦 requirements.txt        # Project dependencies list
 │
-├── models/                 # Model files directory
-│   ├── kokoro-v1.0.onnx    # TTS model file
-│   └── voices-v1.0.bin     # Voices data file
+├── 🤖 models/                 # AI model files directory
+│   ├── 🧠 kokoro-v1.0.onnx    # TTS neural network model
+│   └── 🗣️ voices-v1.0.bin     # Voice data and configurations
 │
-├── temp/                   # Temporary audio files
+├── 🎵 temp/                   # Temporary audio files storage
 │
-└── extras/                 # Additional resources
-    └── images/             # Images and icons
+└── 🎨 extras/                 # Additional resources
+    └── 🖼️ images/             # Images, icons and assets
 ```
 
 ## 🤝 Contributing

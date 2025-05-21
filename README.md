@@ -104,6 +104,10 @@ This application currently supports the Kokoro TTS model for high-quality text-t
    - `kokoro-v1.0.onnx`
    - `voices-v1.0.bin`
 
+Links:
+ - https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+ - https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+
 2. Place these files in the `models/` directory of the project.
 
 The Kokoro model provides:

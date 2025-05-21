@@ -103,7 +103,15 @@ def import_sentences_callback():
 
 def render_sidebar():
     """Render sidebar configuration"""
-    st.sidebar.title("AUDIO STUDIO AI 🎤")
+    # Center the logo in sidebar using native Streamlit
+    _, col2, _ = st.sidebar.columns([1, 2, 1])
+    with col2:
+        st.image(
+            "extras/images/logo-sidebar.png",
+            use_container_width=True,
+        )
+
+    st.sidebar.markdown("#### Audio Settings")
 
     output_formats = ["wav", "mp3"]
     config = {
@@ -182,32 +190,55 @@ def render_sentence_editor(idx, sent):
     st.markdown(f"**Sentence {idx+1}**")
     cols = st.columns([4, 2, 2, 1, 1, 1, 1])
 
-    # Text input
+    # Text input with on_change callback to update session state
+    def update_text():
+        st.session_state.sentences[idx]["text"] = st.session_state[f"text_{key_base}"]
+
     sent["text"] = cols[0].text_area(
-        f"Text {idx+1}", value=sent["text"], key=f"text_{key_base}"
+        f"Text {idx+1}",
+        value=sent["text"],
+        key=f"text_{key_base}",
+        on_change=update_text,
     )
 
-    # Language selection
+    # Language selection with on_change callback
+    def update_lang():
+        st.session_state.sentences[idx]["lang"] = st.session_state[f"lang_{key_base}"]
+        validate_voice_for_lang(st.session_state.sentences[idx])
+
     sent["lang"] = cols[1].selectbox(
         "Language",
         list(LANGS.values()),
         index=list(LANGS.values()).index(sent["lang"]),
         key=f"lang_{key_base}",
-        on_change=lambda: validate_voice_for_lang(sent),
+        on_change=update_lang,
     )
 
-    # Voice selection
+    # Voice selection with on_change callback
+    def update_voice():
+        st.session_state.sentences[idx]["voice"] = st.session_state[f"voice_{key_base}"]
+
     voices = get_voices_for_lang(sent["lang"])
     sent["voice"] = cols[2].selectbox(
         "Voice",
         voices,
         index=voices.index(sent["voice"]) if sent["voice"] in voices else 0,
         key=f"voice_{key_base}",
+        on_change=update_voice,
     )
 
-    # Speed control
+    # Speed control with on_change callback
+    def update_speed():
+        st.session_state.sentences[idx]["speed"] = st.session_state[f"speed_{key_base}"]
+
     sent["speed"] = cols[3].number_input(
-        "Speed", 0.5, 2.0, sent["speed"], 0.1, key=f"speed_{key_base}"
+        "Speed",
+        0.5,
+        2.0,
+        sent["speed"],
+        0.1,
+        key=f"speed_{key_base}",
+        on_change=update_speed,
     )
 
     # Move up/down buttons

@@ -3,3 +3,6 @@ kokoro-onnx
 soundfile
 numpy
 black
+onnxruntime
+fastapi
+uvicorn

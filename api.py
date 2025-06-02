@@ -96,7 +96,9 @@ async def generate_audio(request: AudioRequest):
             request.output_format
         )
 
-        return {"file_path": audio_file}
+        return {
+            "url_download": f"/download/{os.path.basename(audio_file)}",
+        }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

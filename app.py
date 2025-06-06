@@ -321,7 +321,9 @@ def render_generation_tab(config):
             audios.append(samples)
 
             # Save individual sentence audio
-            sentence_files.append(save_sentence_audio(samples, sample_rate, i))
+            sentence_files.append(
+                save_sentence_audio(samples, sample_rate, i, config["output_format"])
+            )
 
             # Add silence between sentences
             silence = generate_silence(

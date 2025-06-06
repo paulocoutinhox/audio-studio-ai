@@ -27,9 +27,9 @@ def generate_audio_for_sentence(kokoro, sentence, sample_rate):
     )
 
 
-def save_sentence_audio(samples, sample_rate, idx):
+def save_sentence_audio(samples, sample_rate, idx, output_format="wav"):
     """Save audio for a single sentence"""
-    temp_sent_file = os.path.join(TEMP_DIR, f"sentence_{idx}.wav")
+    temp_sent_file = os.path.join(TEMP_DIR, f"sentence_{idx}.{output_format}")
     sf.write(temp_sent_file, samples, sample_rate)
     return temp_sent_file
 

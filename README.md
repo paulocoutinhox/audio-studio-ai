@@ -6,7 +6,7 @@
 
 # Audio Studio AI 🎤
 
-Audio Studio AI is an interactive application built with **Python** and **Streamlit**, allowing users to generate high-quality audio content locally using advanced text-to-speech technology. It's perfect for creating voiceovers for videos, podcasts, and other audio content.
+Audio Studio AI is an interactive application built with **Python** and **Streamlit**, allowing users to generate high-quality audio content locally using advanced text-to-speech technology. It features both a beautiful web interface and a powerful REST API for integration. Perfect for creating voiceovers for videos, podcasts, and other audio content.
 
 ## 🚀 Features
 
@@ -15,9 +15,10 @@ Audio Studio AI is an interactive application built with **Python** and **Stream
 - **Sentence-based audio generation** with customizable pauses
 - **Individual sentence preview** and editing
 - **Export/Import** functionality for sentence configurations
-- **Multiple output formats** (WAV, MP3)
+- **Multiple output formats** (WAV, MP3) with dynamic format support
 - **Customizable speech speed** for each sentence
 - **Beautiful Streamlit web interface** for easy interaction
+- **REST API** for integration with other applications
 - **Local processing** - no cloud dependencies required
 
 ## 📞 Installation
@@ -56,7 +57,9 @@ You can configure the following settings in the sidebar:
 
 ## 🛠️ Usage
 
-1. **Run the Application**
+### Web Interface (Streamlit)
+
+1. **Run the Streamlit Application**
    ```sh
    streamlit run app.py
    ```
@@ -72,6 +75,33 @@ You can configure the following settings in the sidebar:
    - Delete sentences using the trash icon
    - Click "Generate Audio" to create the final audio
    - Preview individual sentences or download the complete audio
+
+### REST API
+
+1. **Start the API Server**
+   ```sh
+   python api.py
+   ```
+
+2. **API Documentation**
+   - Server runs on: `http://localhost:8000`
+   - Interactive docs: `http://localhost:8000/docs`
+   - **📚 [Complete API Documentation](API.md)** - Examples, endpoints, and integration guides
+
+3. **Quick API Example**
+   ```bash
+   curl -X POST "http://localhost:8000/generate-audio" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "sentences": [{
+         "text": "Hello world!",
+         "lang": "en-us",
+         "voice": "af_sarah",
+         "speed": 1.0
+       }],
+       "output_format": "mp3"
+     }'
+   ```
 
 ## 🌍 Supported Languages and Voices
 
@@ -123,7 +153,9 @@ The Kokoro model provides:
 audio-studio-ai/
 │
 ├── 📝 README.md               # Project documentation and guide
+├── 📚 API.md                  # Complete REST API documentation
 ├── 🎯 app.py                  # Main Streamlit application interface
+├── 🚀 api.py                  # FastAPI REST API server
 ├── ⚙️ config.py               # Configuration and settings management
 ├── 🛠️ utils.py                # Utility functions and helpers
 ├── 📦 requirements.txt        # Project dependencies list
